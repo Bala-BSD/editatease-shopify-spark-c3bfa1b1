@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Academy from "./pages/Academy";
 import LongFormVideoEditing from "./pages/LongFormVideoEditing";
 import ShortFormVideoEditing from "./pages/ShortFormVideoEditing";
+import ChannelManagement from "./pages/ChannelManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/long-form-video-editing" element={<LongFormVideoEditing />} />
           <Route path="/services/short-form-video-editing" element={<ShortFormVideoEditing />} />
+          <Route path="/services/channel-management" element={<ChannelManagement />} />
           <Route path="/work" element={<Work />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/academy" element={<Academy />} />
