@@ -11,6 +11,7 @@ import Work from "./pages/Work";
 import About from "./pages/About";
 import Academy from "./pages/Academy";
 import LongFormVideoEditing from "./pages/LongFormVideoEditing";
+import ShortFormVideoEditing from "./pages/ShortFormVideoEditing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/long-form-video-editing" element={<LongFormVideoEditing />} />
+          <Route path="/services/short-form-video-editing" element={<ShortFormVideoEditing />} />
           <Route path="/work" element={<Work />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/academy" element={<Academy />} />
