@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Work from "./pages/Work";
 import About from "./pages/About";
 import Academy from "./pages/Academy";
+import VideoEditingGlossary from "./pages/VideoEditingGlossary";
 import LongFormVideoEditing from "./pages/LongFormVideoEditing";
 import ShortFormVideoEditing from "./pages/ShortFormVideoEditing";
 import ChannelManagement from "./pages/ChannelManagement";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/work" element={<Work />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/academy" element={<Academy />} />
+          <Route path="/academy/video-editing-glossary" element={<VideoEditingGlossary />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
