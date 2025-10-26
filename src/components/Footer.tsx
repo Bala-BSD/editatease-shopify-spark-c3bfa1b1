@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Youtube, Instagram, Linkedin, Facebook, Twitter, Mail, Phone, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -58,6 +59,77 @@ const Footer = () => {
               We manage every step—editing, color grading, sound design, and channel optimization—so your content performs on every platform.
               Partner with a creative-first video editing agency that understands both speed and substance.
             </p>
+            
+            <div className="flex gap-3 mt-6">
+              <a
+                href="https://youtube.com/@editatease"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://instagram.com/editatease"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://linkedin.com/company/editatease"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://facebook.com/editatease"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://twitter.com/editatease"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="mailto:hello@editatease.com"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="tel:+911800123EDIT"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="Phone"
+              >
+                <Phone className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://wa.me/911800123EDIT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all group"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+            </div>
           </div>
 
           {footerSections.map((section) => (
