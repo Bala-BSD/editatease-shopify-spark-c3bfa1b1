@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Work from "./pages/Work";
 import About from "./pages/About";
 import Academy from "./pages/Academy";
+import LongFormVideoEditing from "./pages/LongFormVideoEditing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/long-form-video-editing" element={<LongFormVideoEditing />} />
           <Route path="/work" element={<Work />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/academy" element={<Academy />} />
