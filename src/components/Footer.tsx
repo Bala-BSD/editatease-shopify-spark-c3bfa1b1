@@ -52,8 +52,11 @@ const Footer = () => {
                 Edit At Ease
               </div>
             </Link>
-            <p className="text-muted-foreground text-sm">
-              Affordable, fast and human-powered video editing services for brands and creators.
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Edit at Ease is a full-service video editing agency that helps creators, brands, and businesses craft stories that connect.
+              From cinematic long-form documentaries to short-form Reels, YouTube Shorts, podcasts, and marketing campaigns, our editors combine storytelling, design, and AI-powered precision to deliver results.
+              We manage every step—editing, color grading, sound design, and channel optimization—so your content performs on every platform.
+              Partner with a creative-first video editing agency that understands both speed and substance.
             </p>
           </div>
 
