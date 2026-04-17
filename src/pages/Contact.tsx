@@ -78,9 +78,13 @@ const Contact = () => {
     const BOARD_ID = "5026903326";
     const GROUP_ID = "group_mm10weph";
 
+    const parsedPhone = parsePhoneNumber(formData.phone);
+    const e164Phone = parsedPhone?.number || formData.phone;
+    const countryCode = parsedPhone?.country || "US";
+
     const columnValues = {
       email_mm10jnww: { email: formData.email, text: formData.email },
-      phone_mm10gkc8: { phone: formData.phone, countryShortName: "US" },
+      phone_mm10gkc8: { phone: e164Phone, countryShortName: countryCode },
       long_text_mm10x4sq: { text: formData.subject },
       long_text_mm10swn4: { text: formData.message },
     };
