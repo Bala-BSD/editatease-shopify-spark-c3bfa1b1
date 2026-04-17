@@ -52,7 +52,6 @@ const Contact = () => {
     const MONDAY_TOKEN =
       "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUzNzg1NzMzOCwiYWFpIjoxMSwidWlkIjo3ODE2NDU5OCwiaWFkIjoiMjAyNS0wNy0xMVQwNToxOToyNi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzAzMTc0NjksInJnbiI6ImFwc2UyIn0.FSjnTYiHpeGN_XquSk386d-ZdZ2u1pcMvKGXV3y-rzM";
     const BOARD_ID = "5026903326";
-    const GROUP_ID = "group_mm10rw6q";
 
     const columnValues = {
       email_mksc8e8t: { email: formData.email, text: formData.email },
@@ -60,8 +59,8 @@ const Contact = () => {
       long_text_mksc7m1d: { text: formData.message },
     };
 
-    const query = `mutation ($board:ID!,$group:String!,$name:String!,$cols:JSON!){
-      create_item(board_id:$board, group_id:$group, item_name:$name, column_values:$cols){ id }
+    const query = `mutation ($board:ID!,$name:String!,$cols:JSON!){
+      create_item(board_id:$board, item_name:$name, column_values:$cols){ id }
     }`;
 
     try {
@@ -76,7 +75,6 @@ const Contact = () => {
           query,
           variables: {
             board: BOARD_ID,
-            group: GROUP_ID,
             name: formData.name,
             cols: JSON.stringify(columnValues),
           },
