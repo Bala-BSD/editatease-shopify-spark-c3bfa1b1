@@ -27,8 +27,7 @@ const contactSchema = z.object({
     .string()
     .trim()
     .min(1, { message: "Phone is required" })
-    .max(30, { message: "Phone must be less than 30 characters" })
-    .regex(/^[+\d\s()-]+$/, { message: "Invalid phone number" }),
+    .refine((val) => isValidPhoneNumber(val), { message: "Invalid phone number for selected country" }),
   subject: z
     .string()
     .trim()
