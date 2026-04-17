@@ -226,7 +226,7 @@ const Contact = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+91 98765 43210"
                       className={errors.phone ? "border-destructive" : ""}
                     />
                     {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
