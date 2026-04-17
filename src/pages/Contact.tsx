@@ -225,14 +225,17 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone *</Label>
-                    <Input
+                    <PhoneInput
                       id="phone"
-                      name="phone"
-                      type="tel"
+                      international
+                      defaultCountry="IN"
                       value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 98765 43210"
-                      className={errors.phone ? "border-destructive" : ""}
+                      onChange={(value) => {
+                        setFormData({ ...formData, phone: value || "" });
+                        if (errors.phone) setErrors({ ...errors, phone: "" });
+                      }}
+                      placeholder="98765 43210"
+                      className={`phone-input-custom ${errors.phone ? "phone-input-error" : ""}`}
                     />
                     {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
