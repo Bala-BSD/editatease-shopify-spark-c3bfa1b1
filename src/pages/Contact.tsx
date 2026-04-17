@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { z } from "zod";
 import { Mail, Phone, MapPin } from "lucide-react";
+import PhoneInput, { isValidPhoneNumber, parsePhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const contactSchema = z.object({
   name: z
