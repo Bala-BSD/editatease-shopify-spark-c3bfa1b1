@@ -55,9 +55,9 @@ const Contact = () => {
     const GROUP_ID = "group_mm10weph";
 
     const columnValues = {
-      email_mksc8e8t: { email: formData.email, text: formData.email },
-      text_mksc4xj7: formData.subject,
-      long_text_mksc7m1d: { text: formData.message },
+      email_mm10jnww: { email: formData.email, text: formData.email },
+      long_text_mm10x4sq: { text: formData.subject },
+      long_text_mm10swn4: { text: formData.message },
     };
 
     const query = `mutation ($board:ID!,$group:String!,$name:String!,$cols:JSON!){
