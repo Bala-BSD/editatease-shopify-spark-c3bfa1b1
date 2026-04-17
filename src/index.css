@@ -60,3 +60,47 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Phone input theming */
+.phone-input-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  background-color: hsl(var(--background));
+  font-size: 0.875rem;
+}
+.phone-input-custom.phone-input-error {
+  border-color: hsl(var(--destructive));
+}
+.phone-input-custom .PhoneInputInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+}
+.phone-input-custom .PhoneInputInput::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+.phone-input-custom .PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.phone-input-custom .PhoneInputCountrySelect {
+  color: hsl(var(--foreground));
+  background: transparent;
+}
+.phone-input-custom .PhoneInputCountrySelect option {
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+}
+.phone-input-custom .PhoneInputCountrySelectArrow {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.7;
+}
