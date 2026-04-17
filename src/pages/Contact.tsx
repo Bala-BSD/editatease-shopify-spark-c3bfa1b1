@@ -27,11 +27,13 @@ const Contact = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const result = contactSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const formattedErrors: Record<string, string> = {};
       result.error.errors.forEach((err) => {
@@ -42,14 +44,65 @@ const Contact = () => {
       setErrors(formattedErrors);
       return;
     }
-    
+
     setErrors({});
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setSubmitting(true);
+
+    // ⚠️ Public token — visible in browser source. Rotate regularly.
+    const MONDAY_TOKEN =
+      "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUzNzg1NzMzOCwiYWFpIjoxMSwidWlkIjo3ODE2NDU5OCwiaWFkIjoiMjAyNS0wNy0xMVQwNToxOToyNi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzAzMTc0NjksInJnbiI6ImFwc2UyIn0.FSjnTYiHpeGN_XquSk386d-ZdZ2u1pcMvKGXV3y-rzM";
+    const BOARD_ID = "5026903326";
+    const GROUP_ID = "group_mm10rw6q";
+
+    const columnValues = {
+      email_mksc8e8t: { email: formData.email, text: formData.email },
+      text_mksc4xj7: formData.subject,
+      long_text_mksc7m1d: { text: formData.message },
+    };
+
+    const query = `mutation ($board:ID!,$group:String!,$name:String!,$cols:JSON!){
+      create_item(board_id:$board, group_id:$group, item_name:$name, column_values:$cols){ id }
+    }`;
+
+    try {
+      const res = await fetch("https://api.monday.com/v2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: MONDAY_TOKEN,
+          "API-Version": "2023-10",
+        },
+        body: JSON.stringify({
+          query,
+          variables: {
+            board: BOARD_ID,
+            group: GROUP_ID,
+            name: formData.name,
+            cols: JSON.stringify(columnValues),
+          },
+        }),
+      });
+
+      const data = await res.json();
+      if (data.errors || !data.data?.create_item?.id) {
+        throw new Error(data.errors?.[0]?.message || "Failed to submit");
+      }
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("Monday submission error:", err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -177,8 +230,8 @@ const Contact = () => {
                     )}
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-gradient-primary hover:shadow-glow">
-                    Send Message
+                  <Button type="submit" size="lg" disabled={submitting} className="w-full bg-gradient-primary hover:shadow-glow">
+                    {submitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
