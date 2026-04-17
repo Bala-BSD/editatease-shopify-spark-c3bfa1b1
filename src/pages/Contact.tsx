@@ -68,7 +68,7 @@ const Contact = () => {
     const MONDAY_TOKEN =
       "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUzNzg1NzMzOCwiYWFpIjoxMSwidWlkIjo3ODE2NDU5OCwiaWFkIjoiMjAyNS0wNy0xMVQwNToxOToyNi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzAzMTc0NjksInJnbiI6ImFwc2UyIn0.FSjnTYiHpeGN_XquSk386d-ZdZ2u1pcMvKGXV3y-rzM";
     const BOARD_ID = "5026903326";
-    const GROUP_ID = "group_mm10weph";
+    const GROUP_ID = "topics";
 
     const columnValues = {
       email_mm10jnww: { email: formData.email, text: formData.email },
