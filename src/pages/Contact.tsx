@@ -21,6 +21,12 @@ const contactSchema = z.object({
     .trim()
     .email({ message: "Invalid email address" })
     .max(255, { message: "Email must be less than 255 characters" }),
+  phone: z
+    .string()
+    .trim()
+    .min(1, { message: "Phone is required" })
+    .max(30, { message: "Phone must be less than 30 characters" })
+    .regex(/^[+\d\s()-]+$/, { message: "Invalid phone number" }),
   subject: z
     .string()
     .trim()
@@ -38,6 +44,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -72,6 +79,7 @@ const Contact = () => {
 
     const columnValues = {
       email_mm10jnww: { email: formData.email, text: formData.email },
+      phone_mm10gkc8: { phone: formData.phone, countryShortName: "US" },
       long_text_mm10x4sq: { text: formData.subject },
       long_text_mm10swn4: { text: formData.message },
     };
@@ -108,7 +116,7 @@ const Contact = () => {
         title: "Message sent!",
         description: "We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     } catch (err) {
       console.error("Monday submission error:", err);
       toast({
@@ -208,6 +216,20 @@ const Contact = () => {
                       />
                       {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone *</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+1 (555) 123-4567"
+                      className={errors.phone ? "border-destructive" : ""}
+                    />
+                    {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
 
                   <div className="space-y-2">
