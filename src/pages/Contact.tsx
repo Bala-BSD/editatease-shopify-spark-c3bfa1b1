@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { z } from "zod";
 import { Mail, Phone, MapPin } from "lucide-react";
+import PhoneInput, { isValidPhoneNumber, parsePhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const contactSchema = z.object({
   name: z
@@ -25,8 +27,7 @@ const contactSchema = z.object({
     .string()
     .trim()
     .min(1, { message: "Phone is required" })
-    .max(30, { message: "Phone must be less than 30 characters" })
-    .regex(/^[+\d\s()-]+$/, { message: "Invalid phone number" }),
+    .refine((val) => isValidPhoneNumber(val), { message: "Invalid phone number for selected country" }),
   subject: z
     .string()
     .trim()
@@ -77,9 +78,13 @@ const Contact = () => {
     const BOARD_ID = "5026903326";
     const GROUP_ID = "group_mm10weph";
 
+    const parsedPhone = parsePhoneNumber(formData.phone);
+    const e164Phone = parsedPhone?.number || formData.phone;
+    const countryCode = parsedPhone?.country || "US";
+
     const columnValues = {
       email_mm10jnww: { email: formData.email, text: formData.email },
-      phone_mm10gkc8: { phone: formData.phone, countryShortName: "US" },
+      phone_mm10gkc8: { phone: e164Phone, countryShortName: countryCode },
       long_text_mm10x4sq: { text: formData.subject },
       long_text_mm10swn4: { text: formData.message },
     };
@@ -220,14 +225,17 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone *</Label>
-                    <Input
+                    <PhoneInput
                       id="phone"
-                      name="phone"
-                      type="tel"
+                      international
+                      defaultCountry="IN"
                       value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 98765 43210"
-                      className={errors.phone ? "border-destructive" : ""}
+                      onChange={(value) => {
+                        setFormData({ ...formData, phone: value || "" });
+                        if (errors.phone) setErrors({ ...errors, phone: "" });
+                      }}
+                      placeholder="98765 43210"
+                      className={`phone-input-custom ${errors.phone ? "phone-input-error" : ""}`}
                     />
                     {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
