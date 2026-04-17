@@ -11,10 +11,26 @@ import { z } from "zod";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
-  email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
-  subject: z.string().trim().min(1, { message: "Subject is required" }).max(200, { message: "Subject must be less than 200 characters" }),
-  message: z.string().trim().min(10, { message: "Message must be at least 10 characters" }).max(1000, { message: "Message must be less than 1000 characters" }),
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "Name is required" })
+    .max(100, { message: "Name must be less than 100 characters" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Invalid email address" })
+    .max(255, { message: "Email must be less than 255 characters" }),
+  subject: z
+    .string()
+    .trim()
+    .min(1, { message: "Subject is required" })
+    .max(200, { message: "Subject must be less than 200 characters" }),
+  message: z
+    .string()
+    .trim()
+    .min(10, { message: "Message must be at least 10 characters" })
+    .max(1000, { message: "Message must be less than 1000 characters" }),
 });
 
 const Contact = () => {
@@ -52,7 +68,7 @@ const Contact = () => {
     const MONDAY_TOKEN =
       "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUzNzg1NzMzOCwiYWFpIjoxMSwidWlkIjo3ODE2NDU5OCwiaWFkIjoiMjAyNS0wNy0xMVQwNToxOToyNi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzAzMTc0NjksInJnbiI6ImFwc2UyIn0.FSjnTYiHpeGN_XquSk386d-ZdZ2u1pcMvKGXV3y-rzM";
     const BOARD_ID = "5026903326";
-    const GROUP_ID = "group_mm10weph";
+    const GROUP_ID = "topics";
 
     const columnValues = {
       email_mm10jnww: { email: formData.email, text: formData.email },
@@ -121,12 +137,11 @@ const Contact = () => {
             {/* Header */}
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  Get in Touch
-                </span>
+                <span className="bg-gradient-primary bg-clip-text text-transparent">Get in Touch</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Ready to elevate your video content? Send us a message and let's discuss how we can help bring your vision to life.
+                Ready to elevate your video content? Send us a message and let's discuss how we can help bring your
+                vision to life.
               </p>
             </div>
 
@@ -177,9 +192,7 @@ const Contact = () => {
                         placeholder="Your name"
                         className={errors.name ? "border-destructive" : ""}
                       />
-                      {errors.name && (
-                        <p className="text-sm text-destructive">{errors.name}</p>
-                      )}
+                      {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -193,9 +206,7 @@ const Contact = () => {
                         placeholder="your.email@example.com"
                         className={errors.email ? "border-destructive" : ""}
                       />
-                      {errors.email && (
-                        <p className="text-sm text-destructive">{errors.email}</p>
-                      )}
+                      {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -209,9 +220,7 @@ const Contact = () => {
                       placeholder="How can we help?"
                       className={errors.subject ? "border-destructive" : ""}
                     />
-                    {errors.subject && (
-                      <p className="text-sm text-destructive">{errors.subject}</p>
-                    )}
+                    {errors.subject && <p className="text-sm text-destructive">{errors.subject}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -225,12 +234,15 @@ const Contact = () => {
                       rows={6}
                       className={errors.message ? "border-destructive" : ""}
                     />
-                    {errors.message && (
-                      <p className="text-sm text-destructive">{errors.message}</p>
-                    )}
+                    {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
                   </div>
 
-                  <Button type="submit" size="lg" disabled={submitting} className="w-full bg-gradient-primary hover:shadow-glow">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={submitting}
+                    className="w-full bg-gradient-primary hover:shadow-glow"
+                  >
                     {submitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
